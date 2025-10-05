@@ -13,25 +13,27 @@ function Timer() {
               hour = minute * 60,
               day = hour * 24;
 
-        const birthday = "03/07/2025 21:00:00";
+        const birthday = "11/30/2025 14:00:00"; // mm/dd/yyyy
         const countDown = new Date(birthday).getTime();
 
         const x = setInterval(() => {    
     
-            setDayy(Math.floor((countDown - Date.now()) / (day)))
-            setHourr(Math.floor(((countDown - Date.now()) % (day)) / (hour)))
-            setMinutee(Math.floor(((countDown - Date.now()) % (hour)) / (minute)))
-            setSecondd(Math.floor(((countDown - Date.now()) % (minute)) / second))
-    
-            //do something later when date is reached
-            if ((countDown - Date.now()) < 0) {
-            clearInterval(x);
+            if ((countDown - Date.now()) > 0) {
+                setDayy(Math.floor((countDown - Date.now()) / (day)))
+                setHourr(Math.floor(((countDown - Date.now()) % (day)) / (hour)))
+                setMinutee(Math.floor(((countDown - Date.now()) % (hour)) / (minute)))
+                setSecondd(Math.floor(((countDown - Date.now()) % (minute)) / second))
+            } else {
+                setDayy(0)
+                setHourr(0)
+                setMinutee(0)
+                setSecondd(0)
+                clearInterval(x);
             }
-            //seconds
         }, 1000);
 
     return (
-        <div className= "w-full h-96 relative my-14 flex flex-col justify-center gap-8 font-[poppins] text-primary bg-[url('/circulo.svg')] bg-no-repeat bg-contain bg-center">
+        <div className= "w-full h-96 relative my-14 flex flex-col justify-center gap-8 font-[poppins] text-primary bg-[url('/circulo.png')] bg-no-repeat bg-contain bg-center">
             <h2 className="font-semibold text-6xl text-center font-dance">Faltan</h2>
             <div className="flex justify-evenly gap-2 text-4xl mx-auto relative w-[full] max-w-[522px]">
                 <div className="flex-col items-center flex min-w-12">
